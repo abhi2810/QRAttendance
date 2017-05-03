@@ -73,3 +73,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         qrScan.initiateScan();
     }
 }
+//test code
