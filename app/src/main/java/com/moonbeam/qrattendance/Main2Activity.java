@@ -57,10 +57,10 @@ public class Main2Activity extends AppCompatActivity {
         InputStream in = new BufferedInputStream(urlConnection.getInputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         response = reader.readLine();
-        Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
+        //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
         if (!response.equals("0")) {
-            Intent i = new Intent(Main2Activity.this, MainActivity.class);
-            i.putExtra("channel",response);
+            Intent i = new Intent(Main2Activity.this, Main3Activity.class);
+            i.putExtra("ID",response+name);
             startActivity(i);
         }
     }
