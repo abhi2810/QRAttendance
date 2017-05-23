@@ -36,4 +36,8 @@
         android:layout_marginTop="75dp"
         android:onClick="onButtonClick"
         android:text="SignIn" />
+    <WebView
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 </RelativeLayout>
