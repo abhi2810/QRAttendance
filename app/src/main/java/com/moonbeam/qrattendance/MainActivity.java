@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewName;
     private WebView mWebView;
     private WebView webview;
+    String table;
     //qr code scanner object
     private IntentIntegrator qrScan;
     @Override
@@ -33,7 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mWebView = (WebView) findViewById(R.id.activity_main_webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.loadUrl("https://demotestsocial.000webhostapp.com/?show=0");
+        Bundle bundle=getIntent().getExtras();
+        table=bundle.getString("ID");
+        mWebView.loadUrl("https://demotestsocial.000webhostapp.com/?show=0&table="+table);
         reload();
         buttonScan.setOnClickListener(this);
     }
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
-                mWebView.loadUrl("https://demotestsocial.000webhostapp.com/?show=0");
+                mWebView.loadUrl("https://demotestsocial.000webhostapp.com/?show=0&table="+table);
                 reload();
             }
         }, 5000);
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
                 String t = sdf.format(new Date());
                 String time=""+t.substring(9,11)+"H"+t.substring(11,13)+"M, "+t.substring(6,8)+"/"+t.substring(4,6)+"/"+t.substring(0,4);
-                String url="https://demotestsocial.000webhostapp.com/?name="+result.getContents()+"&time="+time;
+                String url="https://demotestsocial.000webhostapp.com/?name="+result.getContents()+"&time="+time+"&table="+table;
                 webview.loadUrl(url);
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
             }

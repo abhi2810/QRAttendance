@@ -6,47 +6,62 @@
     tools:context="com.moonbeam.qrattendance.Main3Activity">
 
     <WebView
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/webadd"/>
+
+    <WebView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/webView1" />
+        android:id="@+id/webView1" >
 
-    <EditText
-        android:id="@+id/channel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    </WebView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/webView1"
-        android:ems="10"
-        android:hint="Channel name"
-        android:inputType="textPersonName" />
+        android:layout_below="@+id/webView1">
 
-    <Button
-        android:id="@+id/open"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/webView1"
-        android:layout_marginEnd="31dp"
-        android:text="open" />
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/add"
+            android:layout_alignBottom="@+id/add"
+            android:layout_alignEnd="@+id/open"
+            android:text="Delete Channel" />
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="13dp"
-        android:text="Add Channel"
-        android:layout_below="@+id/open"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/open"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="13dp"
+            android:text="Add Channel" />
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete Channel"
-        android:layout_alignBaseline="@+id/add"
-        android:layout_alignBottom="@+id/add"
-        android:layout_alignEnd="@+id/open" />
+        <Button
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="31dp"
+            android:text="open" />
+
+        <EditText
+            android:id="@+id/channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:ems="10"
+            android:hint="Channel name"
+            android:inputType="textPersonName" />
+    </RelativeLayout>
+
 </RelativeLayout>

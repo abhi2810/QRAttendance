@@ -1,5 +1,7 @@
 package com.moonbeam.qrattendance;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,18 +10,27 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
 public class Main3Activity extends AppCompatActivity {
     private WebView webv;
+    private WebView webadd;
     private EditText channel;
     private Button open;
     private Button add;
     private Button delete;
+    String ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,35 +42,81 @@ public class Main3Activity extends AppCompatActivity {
         add=(Button)findViewById(R.id.add);
         delete=(Button)findViewById(R.id.delete);
         webv=(WebView)findViewById(R.id.webView1);
+        webadd=(WebView) findViewById(R.id.webadd);
         Bundle bundle=getIntent().getExtras();
-        final String ID=bundle.getString("ID");
+        ID=bundle.getString("ID");
+        WebSettings webaddSettings = webadd.getSettings();
+        webaddSettings.setJavaScriptEnabled(true);
         WebSettings webSettings = webv.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webv.loadUrl("https://demotestsocial.000webhostapp.com/channels.php?show="+ID);
+        reload();
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 try {
-                    add(ID);
+                    open();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add();
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
+            }
+        });
     }
-    void add(String ID)throws IOException{
+    public void reload() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                webv.loadUrl("https://demotestsocial.000webhostapp.com/channels.php?show="+ID);
+                reload();
+            }
+        }, 5000);
+    }
+    void add(){
         String chname=channel.getText().toString();
-        chname = URLEncoder.encode(chname, "UTF-8");
-        String wsite = "http://demotestsocial.000webhostapp.com/login.php?name=" + chname + "&input=" + ID;
+        String url="http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID+"&change=0";
+        webadd.loadUrl(url);
+        Toast.makeText(this, chname+":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+    }
+    void delete(){
+        String chname=channel.getText().toString();
+        String url="http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID+"&change=1";
+        webadd.loadUrl(url);
+        Toast.makeText(this, chname+":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+    }
+    void open() throws IOException {
+        String name = channel.getText().toString();
+        name = URLEncoder.encode(name, "UTF-8");
+        ID = URLEncoder.encode(ID, "UTF-8");
+        String response = "0";
+        String wsite = "http://demotestsocial.000webhostapp.com/next.php?name=" + name + "&table=" + ID;
         URL url = new URL(wsite);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("POST");
         urlConnection.setDoOutput(true);
+        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        response = reader.readLine();
+        //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
+        if (!response.equals("0")) {
+            Intent i = new Intent(Main3Activity.this, MainActivity.class);
+            i.putExtra("ID",ID+response);
+            startActivity(i);
+        }else{
+            Toast.makeText(this,"No Such Channel",Toast.LENGTH_LONG).show();
+        }
     }
 }
