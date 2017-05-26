@@ -14,8 +14,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
 
 import android.widget.Toast;
 
@@ -35,10 +37,14 @@ public class Main2Activity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    login();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (isInternetAvailable()){
+                    try {
+                        login();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(Main2Activity.this,"Internet not Connected",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -57,20 +63,31 @@ public class Main2Activity extends AppCompatActivity {
         name = URLEncoder.encode(name, "UTF-8");
         String pass = passwordview.getText().toString();
         pass = URLEncoder.encode(pass, "UTF-8");
-        String response = "0";
-        String wsite = "http://demotestsocial.000webhostapp.com/login.php?name=" + name + "&pass=" + pass;
-        URL url = new URL(wsite);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("POST");
-        urlConnection.setDoOutput(true);
-        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        response = reader.readLine();
-        //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
-        if (!response.equals("0")) {
-            Intent i = new Intent(Main2Activity.this, Main3Activity.class);
-            i.putExtra("ID",response+name);
-            startActivity(i);
+        if(!name.equals("")&&!pass.equals("")) {
+            String response = "0";
+            String wsite = "http://demotestsocial.000webhostapp.com/login.php?name=" + name + "&pass=" + pass;
+            URL url = new URL(wsite);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            response = reader.readLine();
+            //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
+            if (!response.equals("0")) {
+                Intent i = new Intent(Main2Activity.this, Main3Activity.class);
+                i.putExtra("ID", response + name);
+                startActivity(i);
+            }
+        }else{
+            Toast.makeText(Main2Activity.this,"Username or Password field is empty",Toast.LENGTH_LONG).show();
         }
+    }
+    public boolean isInternetAvailable() {
+        try {
+            final InetAddress address = InetAddress.getByName("www.google.com");
+            return !address.equals("");
+        } catch (UnknownHostException e) {}
+        return false;
     }
 }

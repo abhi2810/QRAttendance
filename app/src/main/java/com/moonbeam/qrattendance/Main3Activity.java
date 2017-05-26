@@ -87,36 +87,48 @@ public class Main3Activity extends AppCompatActivity {
     }
     void add(){
         String chname=channel.getText().toString();
-        String url="http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID+"&change=0";
-        webadd.loadUrl(url);
-        Toast.makeText(this, chname+":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+        if(!chname.equals("")) {
+            String url = "http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID + "&change=0";
+            webadd.loadUrl(url);
+            Toast.makeText(this, chname + ":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(Main3Activity.this,"Channel Field is empty",Toast.LENGTH_LONG).show();
+        }
     }
     void delete(){
         String chname=channel.getText().toString();
-        String url="http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID+"&change=1";
-        webadd.loadUrl(url);
-        Toast.makeText(this, chname+":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+        if(!chname.equals("")) {
+            String url = "http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID + "&change=1";
+            webadd.loadUrl(url);
+            Toast.makeText(this, chname + ":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(Main3Activity.this,"Channel Field is empty",Toast.LENGTH_LONG).show();
+        }
     }
     void open() throws IOException {
         String name = channel.getText().toString();
-        name = URLEncoder.encode(name, "UTF-8");
-        ID = URLEncoder.encode(ID, "UTF-8");
-        String response = "0";
-        String wsite = "http://demotestsocial.000webhostapp.com/next.php?name=" + name + "&table=" + ID;
-        URL url = new URL(wsite);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("POST");
-        urlConnection.setDoOutput(true);
-        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        response = reader.readLine();
-        //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
-        if (!response.equals("0")) {
-            Intent i = new Intent(Main3Activity.this, MainActivity.class);
-            i.putExtra("ID",ID+response);
-            startActivity(i);
+        if(!name.equals("")) {
+            name = URLEncoder.encode(name, "UTF-8");
+            ID = URLEncoder.encode(ID, "UTF-8");
+            String response = "0";
+            String wsite = "http://demotestsocial.000webhostapp.com/next.php?name=" + name + "&table=" + ID;
+            URL url = new URL(wsite);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            response = reader.readLine();
+            //Toast.makeText(Main2Activity.this, response, Toast.LENGTH_LONG).show();
+            if (!response.equals("0")) {
+                Intent i = new Intent(Main3Activity.this, MainActivity.class);
+                i.putExtra("ID", ID + response);
+                startActivity(i);
+            } else {
+                Toast.makeText(this, "No Such Channel", Toast.LENGTH_LONG).show();
+            }
         }else{
-            Toast.makeText(this,"No Such Channel",Toast.LENGTH_LONG).show();
+            Toast.makeText(Main3Activity.this,"Channel Field is empty",Toast.LENGTH_LONG).show();
         }
     }
 }
