@@ -30,7 +30,8 @@
         <activity
             android:name=".Main3Activity"
             android:windowSoftInputMode="adjustPan|adjustResize" />
-        <activity android:name=".Signup"></activity>
+        <activity android:name=".Signup"
+            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
     </application>
 
 </manifest>
