@@ -95,7 +95,8 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
+            finish();
+            moveTaskToBack(true);
             return;
         }
 

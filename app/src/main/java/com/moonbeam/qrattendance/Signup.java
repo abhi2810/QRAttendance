@@ -70,6 +70,7 @@ public class Signup extends AppCompatActivity {
                 if (response.equals("0")){
                     web.loadUrl("http://demotestsocial.000webhostapp.com/signup.php?read=0&name=" + user+"&pass="+password+"&email="+mail);
                     Intent i=new Intent(Signup.this,Main2Activity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 }else{
                     Toast.makeText(Signup.this,"Username already in use",Toast.LENGTH_LONG).show();
