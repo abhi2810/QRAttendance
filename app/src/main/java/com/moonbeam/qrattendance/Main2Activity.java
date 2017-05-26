@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
     private Button btn;
+    private Button sign;
     private EditText nameview;
     private EditText passwordview;
     @Override
@@ -30,6 +31,7 @@ public class Main2Activity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_main2);
         btn = (Button) findViewById(R.id.button);
+        sign=(Button)findViewById(R.id.signup);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +40,13 @@ public class Main2Activity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Main2Activity.this,Signup.class);
+                startActivity(i);
             }
         });
     }

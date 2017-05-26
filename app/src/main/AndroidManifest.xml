@@ -15,7 +15,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".Main2Activity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -28,7 +28,8 @@
         </activity>
         <activity
             android:name=".Main3Activity"
-            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity android:name=".Signup"></activity>
     </application>
 
 </manifest>
