@@ -27,7 +27,6 @@ public class Signup extends AppCompatActivity {
     private EditText email;
     private Button sign;
     private WebView web;
-    String response;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class Signup extends AppCompatActivity {
         email=(EditText)findViewById(R.id.email);
         sign=(Button)findViewById(R.id.signup);
         web=(WebView)findViewById(R.id.websign);
-        response="0";
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +58,7 @@ public class Signup extends AppCompatActivity {
                 user = URLEncoder.encode(user, "UTF-8");
                 password=URLEncoder.encode(password,"UTF-8");
                 mail=URLEncoder.encode(mail,"UTF-8");
-                response = "0";
+                String response = "0";
                 String wsite = "http://demotestsocial.000webhostapp.com/signup.php?read=1&name=" + user;
                 URL url = new URL(wsite);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -69,7 +67,7 @@ public class Signup extends AppCompatActivity {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 response = reader.readLine();
-                if (response.equals("0")){
+                if (response.equals("1")){
                     web.loadUrl("http://demotestsocial.000webhostapp.com/signup.php?read=0&name=" + user+"&pass="+password+"&email="+mail);
                     Intent i=new Intent(Signup.this,Main2Activity.class);
                     startActivity(i);
