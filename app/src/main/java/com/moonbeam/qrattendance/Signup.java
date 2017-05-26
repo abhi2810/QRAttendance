@@ -67,7 +67,7 @@ public class Signup extends AppCompatActivity {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 response = reader.readLine();
-                if (response.equals("1")){
+                if (response.equals("0")){
                     web.loadUrl("http://demotestsocial.000webhostapp.com/signup.php?read=0&name=" + user+"&pass="+password+"&email="+mail);
                     Intent i=new Intent(Signup.this,Main2Activity.class);
                     startActivity(i);
