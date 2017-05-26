@@ -65,7 +65,7 @@ public class Main2Activity extends AppCompatActivity {
         name = URLEncoder.encode(name, "UTF-8");
         String pass = passwordview.getText().toString();
         pass = URLEncoder.encode(pass, "UTF-8");
-        if(!name.equals("")||!pass.equals("")) {
+        if(!name.equals("")&&!pass.equals("")) {
             String response = "0";
             String wsite = "http://demotestsocial.000webhostapp.com/login.php?name=" + name + "&pass=" + pass;
             URL url = new URL(wsite);

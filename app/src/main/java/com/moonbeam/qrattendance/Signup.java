@@ -53,7 +53,7 @@ public class Signup extends AppCompatActivity {
         String password=pass.getText().toString();
         String cpass=upass.getText().toString();
         String mail=email.getText().toString();
-        if(!user.equals("")||!password.equals("")||!cpass.equals("")||!mail.equals("")){
+        if(!user.equals("")&&!password.equals("")&&!cpass.equals("")&&!mail.equals("")){
             if (password.equals(cpass)){
                 user = URLEncoder.encode(user, "UTF-8");
                 password=URLEncoder.encode(password,"UTF-8");
