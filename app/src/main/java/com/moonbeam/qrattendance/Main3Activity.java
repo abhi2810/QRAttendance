@@ -17,9 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -38,11 +36,11 @@ public class Main3Activity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.activity_main3);
         channel=(EditText) findViewById(R.id.channel);
-        open=(Button)findViewById(R.id.open);
+        open=(Button)findViewById(R.id.signup);
         add=(Button)findViewById(R.id.add);
         delete=(Button)findViewById(R.id.delete);
         webv=(WebView)findViewById(R.id.webView1);
-        webadd=(WebView) findViewById(R.id.webadd);
+        webadd=(WebView) findViewById(R.id.websign);
         Bundle bundle=getIntent().getExtras();
         ID=bundle.getString("ID");
         WebSettings webaddSettings = webadd.getSettings();

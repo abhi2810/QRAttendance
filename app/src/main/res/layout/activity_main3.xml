@@ -10,7 +10,7 @@
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/webadd"/>
+        android:id="@+id/websign"/>
 
     <WebView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/add"
             android:layout_alignBottom="@+id/add"
-            android:layout_alignEnd="@+id/open"
+            android:layout_alignEnd="@+id/signup"
             android:text="Delete Channel" />
 
         <Button
@@ -41,13 +41,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/open"
+            android:layout_below="@+id/signup"
             android:layout_marginStart="39dp"
             android:layout_marginTop="13dp"
             android:text="Add Channel" />
 
         <Button
-            android:id="@+id/open"
+            android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
