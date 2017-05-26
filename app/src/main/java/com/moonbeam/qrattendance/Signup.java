@@ -1,5 +1,6 @@
 package com.moonbeam.qrattendance;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,11 +71,15 @@ public class Signup extends AppCompatActivity {
                 response = reader.readLine();
                 if (response.equals("0")){
                     web.loadUrl("http://demotestsocial.000webhostapp.com/signup.php?read=0&name=" + user+"&pass="+password+"&email="+mail);
+                    Intent i=new Intent(Signup.this,Main2Activity.class);
+                    startActivity(i);
                 }else{
                     Toast.makeText(Signup.this,"Username already in use",Toast.LENGTH_LONG).show();
                 }
             }else{
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
+                pass.setText("");
+                upass.setText("");
             }
         }else{
             Toast.makeText(Signup.this,"field/s is/are still empty",Toast.LENGTH_LONG).show();

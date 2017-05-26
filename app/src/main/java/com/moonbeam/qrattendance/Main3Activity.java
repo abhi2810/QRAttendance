@@ -88,6 +88,7 @@ public class Main3Activity extends AppCompatActivity {
         if(!chname.equals("")) {
             String url = "http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID + "&change=0";
             webadd.loadUrl(url);
+            channel.setText("");
             Toast.makeText(this, chname + ":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(Main3Activity.this,"Channel Field is empty",Toast.LENGTH_LONG).show();
@@ -98,6 +99,7 @@ public class Main3Activity extends AppCompatActivity {
         if(!chname.equals("")) {
             String url = "http://demotestsocial.000webhostapp.com/channels.php?name=" + chname + "&input=" + ID + "&change=1";
             webadd.loadUrl(url);
+            channel.setText("");
             Toast.makeText(this, chname + ":Wait for few moments for the channel to update", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(Main3Activity.this,"Channel Field is empty",Toast.LENGTH_LONG).show();
