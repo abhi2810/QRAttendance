@@ -5,43 +5,54 @@
     android:layout_height="match_parent"
     tools:context="com.moonbeam.qrattendance.Main2Activity">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:ems="10"
-        android:hint="username"
-        android:inputType="textPersonName" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/username"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="47dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:text="SignIn" />
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="121dp"
+                android:ems="10"
+                android:hint="username"
+                android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button"
-        android:layout_below="@+id/button"
-        android:layout_marginTop="47dp"
-        android:text="SignUp" />
+            <EditText
+                android:id="@+id/pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/username"
+                android:layout_below="@+id/username"
+                android:layout_marginTop="47dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pass"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="75dp"
+                android:text="SignIn" />
+
+            <Button
+                android:id="@+id/signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/button"
+                android:layout_below="@+id/button"
+                android:layout_marginTop="47dp"
+                android:text="SignUp" />
+        </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>
